@@ -1,0 +1,23 @@
+diff -up ./src/mappers/ldap_mapper.c.nss_fix ./src/mappers/ldap_mapper.c
+--- ./src/mappers/ldap_mapper.c.nss_fix	2010-06-21 15:10:53.661920000 -0700
++++ ./src/mappers/ldap_mapper.c	2010-06-21 15:10:56.720908000 -0700
+@@ -761,17 +761,17 @@ static int ldap_get_certificate(const ch
+ 		while(rv < certcnt )
+ 		{
+ 			/* SaW: not nifty, but otherwise gcc doesn't optimize */
+-			bv_val = &bvals[rv]->bv_val;
+ #ifdef HAVE_NSS
+ 			{
+ 				SECItem derdata;
+-				derdata.data = bv_val;
++				derdata.data = bvals[rv]->bv_val;
+ 				derdata.len = bvals[rv]->bv_len;
+ 
+ 				ldap_x509[rv] = CERT_NewTempCertificate(CERT_GetDefaultCertDB(),
+ 					&derdata, NULL, 0, 1);
+ 			}
+ #else
++			bv_val = &bvals[rv]->bv_val;
+ 			ldap_x509[rv] = d2i_X509(NULL, ((const unsigned char **) bv_val), bvals[rv]->bv_len);
+ #endif
+ 			if (NULL == ldap_x509[rv]) {

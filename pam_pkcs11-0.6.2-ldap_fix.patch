@@ -1,0 +1,11 @@
+diff -up ./src/mappers/ldap_mapper.c.no_ossl ./src/mappers/ldap_mapper.c
+--- ./src/mappers/ldap_mapper.c.no_ossl	2010-06-04 22:50:48.000000000 -0700
++++ ./src/mappers/ldap_mapper.c	2010-06-04 22:51:05.000000000 -0700
+@@ -38,7 +38,6 @@
+ #define LDAP_DEPRECATED 1
+ #include <ldap.h>
+ #include <pwd.h>
+-#include <openssl/x509.h>
+ 
+ #include "../common/cert_st.h"
+ #include "../common/debug.h"

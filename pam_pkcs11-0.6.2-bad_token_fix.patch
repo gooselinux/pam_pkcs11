@@ -1,0 +1,11 @@
+diff -up ./src/common/pkcs11_lib.c.bad_token ./src/common/pkcs11_lib.c
+--- ./src/common/pkcs11_lib.c.bad_token	2010-07-26 14:26:17.787960000 -0700
++++ ./src/common/pkcs11_lib.c	2010-07-26 14:27:29.405605000 -0700
+@@ -706,6 +706,7 @@ cert_object_t **get_certificate_list(pkc
+   int certIndex = 0;
+   SECStatus rv;
+ 
++  *count = 0;
+   if (!h->slot) {
+     return NULL;
+   }
